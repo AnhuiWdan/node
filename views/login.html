@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>login</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/store.css">
+</head>
+
+<body>
+    <form action="#" class="form clearfix">
+        <div class="header">用户登录</div>
+
+        <%- message %>
+        <div class="form-content">
+            <div class="form-block">
+                <input type="text" class="form-input" placeholder="用户名" name="uname">
+            </div>
+            <div class="form-block">
+                <input type="password" class="form-input" placeholder="密码" name="upwd">
+            </div>
+            <input type="submit" class="submit" value="登录" onclick="login()">
+
+            <div class="bottom">
+                <a href="register" class="link-to">注册</a>
+            </div>
+        </div>
+    </form>
+</body>
+<script src="js/jquery.min.js" type="text/javascript"></script>
+<script>
+    function login() {
+        var data = $("form").serialize();
+        $.ajax({
+            url: '/login',
+            type: 'POST',
+            data: data,
+            success: function (data, status) {
+                if (status == 'success') {
+                    location.href = 'register';
+                }
+            },
+            error: function (res, err) {
+                if(status == 'error') {
+                    location.href = 'login';
+                }
+            }
+        })
+    }
+</script>
+
+</html>

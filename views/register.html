@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>register</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/store.css">
+</head>
+
+<body>
+    <div action="#" class="form clearfix">
+        <div class="header">用户注册</div>
+
+
+        <%- message %>
+
+            <div class="form-content">
+                <div class="form-block">
+                    <input type="text" class="form-input" placeholder="用户名" name="uname" id="uname">
+                </div>
+                <div class="form-block">
+                    <input type="password" class="form-input" placeholder="密码" name="upwd" id="upwd">
+                </div>
+                <div class="form-block">
+                    <input type="password" class="form-input" placeholder="确认密码">
+                </div>
+                <input type="submit" class="submit" value="注册" onclick="reg()">
+
+                <div class="bottom">
+                    <a href="./login" class="link-to">登录</a>
+                </div>
+            </div>
+    </div>
+</body>
+<script src="js/jquery.min.js" type="text/javascript"></script>
+<script>
+    function reg() {
+        var uname = $("#uname").val();
+        var upwd = $("#upwd").val();
+        var data = "uname=" + uname + "&upwd=" + upwd;
+
+        $.ajax({
+            url: '/register',
+            type: 'POST',
+            data: data,
+            success: function (data, status) {
+                console.log(status);
+                if (status == 'success') {
+                    location.href = 'login';
+                }
+            },
+            error: function (data, status) {
+                if (status == 'error') {
+                    location.href = 'register';
+                }
+            }
+        })
+    }
+</script>
+
+</html>
