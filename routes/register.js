@@ -5,7 +5,7 @@ module.exports = function (app) {
 
     // 进入注册页
     app.get('/', (req, res) => {
-    
+       
         res.render('register');
     });
     //同上
